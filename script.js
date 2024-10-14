@@ -101,7 +101,7 @@ function loadQuestions() {
   } else {
     questionDiv.innerHTML += `<button id = "nxt-btn">Submit</button>`;
   }
-  if (currentQuestionIndex == 0) quizForm.innerHTML = "";
+  quizForm.innerHTML = "";
 
   quizForm.appendChild(questionDiv);
 
@@ -142,7 +142,7 @@ function displayResult(score) {
   } else {
     document.getElementById(
       "result-msg"
-    ).innerText = `You failed the test. Your score was ${scorePercent}`;
+    ).innerText = `You failed the test. Your score ${scorePercent}`;
     console.log("Hello");
   }
 }
