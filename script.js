@@ -81,6 +81,7 @@ function loadQuestions() {
   const quizForm = document.getElementById("quizForm");
 
   const questionDiv = document.createElement("div");
+  const btnDiv = document.createElement("div");
   questionDiv.classList.add("question");
 
   const questionHTML = `<p>${currentQuestionIndex + 1}. ${item.question}</p>`;
@@ -96,16 +97,24 @@ function loadQuestions() {
         </div>
         `;
   });
-  if (currentQuestionIndex < randomQuestions.length - 1) {
-    questionDiv.innerHTML += `<button id = "nxt-btn">Next</button>`;
-  } else {
-    questionDiv.innerHTML += `<button id = "nxt-btn">Submit</button>`;
+  if (currentQuestionIndex === 0) {
+    btnDiv.innerHTML += `<button id="nxt-btn">Next</button>`;
+  } else if (
+    currentQuestionIndex > 0 &&
+    currentQuestionIndex < randomQuestions.length - 1
+  ) {
+    btnDiv.innerHTML += `<button id="prev-btn">Prev</button>`;
+    btnDiv.innerHTML += `<button id="nxt-btn">Next</button>`;
+  } else if (currentQuestionIndex === randomQuestions.length - 1) {
+    btnDiv.innerHTML += `<button id="prev-btn">Prev</button>`;
+    btnDiv.innerHTML += `<button id="nxt-btn">Submit</button>`;
   }
   quizForm.innerHTML = "";
-
   quizForm.appendChild(questionDiv);
+  quizForm.appendChild(btnDiv);
 
   document.querySelector("#nxt-btn").addEventListener("click", () => {
+    event.preventDefault();
     const selectedOption = document.querySelector(
       `input[name="q${currentQuestionIndex}"]:checked`
     );
@@ -125,6 +134,14 @@ function loadQuestions() {
       alert("Please select an option");
     }
   });
+
+  document.querySelector("#prev-btn").addEventListener("click", () => {
+    event.preventDefault();
+    if (currentQuestionIndex > 0) {
+      currentQuestionIndex--;
+      loadQuestions();
+    }
+  });
 }
 
 function displayResult(score) {
@@ -138,12 +155,10 @@ function displayResult(score) {
     document.getElementById(
       "result-msg"
     ).innerText = `You succesfully passed the test with ${scorePercent}%`;
-    console.log("Hi");
   } else {
     document.getElementById(
       "result-msg"
     ).innerText = `You failed the test. Your score ${scorePercent}`;
-    console.log("Hello");
   }
 }
 
