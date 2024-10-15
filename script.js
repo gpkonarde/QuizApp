@@ -113,7 +113,7 @@ function loadQuestions() {
   quizForm.appendChild(questionDiv);
   quizForm.appendChild(btnDiv);
 
-  document.querySelector("#nxt-btn").addEventListener("click", () => {
+  document.querySelector("#nxt-btn").addEventListener("click", (event) => {
     event.preventDefault();
     const selectedOption = document.querySelector(
       `input[name="q${currentQuestionIndex}"]:checked`
@@ -135,7 +135,7 @@ function loadQuestions() {
     }
   });
 
-  document.querySelector("#prev-btn").addEventListener("click", () => {
+  document.querySelector("#prev-btn").addEventListener("click", (event) => {
     event.preventDefault();
     if (currentQuestionIndex > 0) {
       currentQuestionIndex--;
