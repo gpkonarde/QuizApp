@@ -102,10 +102,11 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.leftArrow,
-.rightArrow {
+#prev-btn,
+#nxt-btn {
   font-size: 24px;
   cursor: pointer;
   user-select: none;
@@ -121,16 +122,16 @@ button:hover {
   margin: 0 10px;
 }
 
-.leftArrow:hover,
-.rightArrow:hover {
+#prev-btn:hover,
+#nxt-btn:hover {
   background-color: #e0e0e0;
 }
 
-.leftArrow {
+#prev-btn {
   order: 0;
 }
 
-.rightArrow {
+#nxt-btn {
   order: 3;
 }
 

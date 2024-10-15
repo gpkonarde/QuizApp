@@ -81,9 +81,6 @@ function loadQuestions() {
   displayNumList();
 
   const questionDiv = document.createElement("div");
-  const btnDiv = document.createElement("div");
-  questionDiv.classList.add("question");
-
   const questionHTML = `<p>${currentQuestionIndex + 1}. ${item.question}</p>`;
   questionDiv.innerHTML = questionHTML;
 
@@ -97,20 +94,23 @@ function loadQuestions() {
         </div>
         `;
   });
-  if (currentQuestionIndex === 0) {
-    btnDiv.innerHTML += `<button id="nxt-btn">Next</button>`;
-  } else if (
-    currentQuestionIndex > 0 &&
-    currentQuestionIndex < randomQuestions.length - 1
-  ) {
-    btnDiv.innerHTML += `<button id="prev-btn">Prev</button>`;
-    btnDiv.innerHTML += `<button id="nxt-btn">Next</button>`;
-  } else if (currentQuestionIndex === randomQuestions.length - 1) {
-    btnDiv.innerHTML += `<button id="prev-btn">Prev</button>`;
-    btnDiv.innerHTML += `<button id="nxt-btn">Submit</button>`;
-  }
+  // if (currentQuestionIndex === 0) {
+  //   btnDiv.innerHTML += `<button id="nxt-btn">Next</button>`;
+  // } else if (
+  //   currentQuestionIndex > 0 &&
+  //   currentQuestionIndex < randomQuestions.length - 1
+  // ) {
+  //   btnDiv.innerHTML += `<button id="prev-btn">Prev</button>`;
+  //   btnDiv.innerHTML += `<button id="nxt-btn">Next</button>`;
+  // } else
+  // if (currentQuestionIndex === randomQuestions.length - 1) {
+  //   // btnDiv.innerHTML += `<button id="prev-btn">Prev</button>`;
+  //   btnDiv.innerHTML += `<button id="nxt-btn">Submit</button>`;
+  // }
   quizForm.appendChild(questionDiv);
-  quizForm.appendChild(btnDiv);
+  // quizForm.appendChild(btnDiv);
+
+  buttonVisibility();
 
   document.querySelector("#nxt-btn").addEventListener("click", (event) => {
     event.preventDefault();
@@ -147,11 +147,28 @@ function loadQuestions() {
   }
 }
 
+function buttonVisibility() {
+  const prevBtn = document.getElementById("prev-btn");
+  const nxtBtn = document.getElementById("nxt-btn");
+
+  if (currentQuestionIndex == 0) {
+    prevBtn.style.display = "none";
+  } else {
+    prevBtn.style.display = "flex";
+  }
+
+  if (currentQuestionIndex == randomQuestions.length) {
+    nxtBtn.innerText = "✔";
+    nxtBtn.onclick = (event) => {
+      event.preventDefault();
+      displayResult(score);
+    };
+  }
+}
+
 function displayResult(score) {
   document.querySelector(".container").innerHTML =
     '<div id="result-msg"></div>';
-  console.log(score);
-  console.log(randomQuestions.length);
 
   const scorePercent = (score / randomQuestions.length) * 100;
   if (scorePercent >= 60) {
@@ -191,9 +208,9 @@ function displayNumList() {
   listContainer.classList.add("arrowContainer");
 
   if (!listContainer.parentElement) {
-    listContainer.innerHTML = `<div class="leftArrow">←</div>
+    listContainer.innerHTML = `<div id="prev-btn">←</div>
       <ul class="NumberList"></ul>
-      <div class="rightArrow">→</div>`;
+      <div id="nxt-btn">→</div>`;
   }
 
   if (quizForm) {
