@@ -70,6 +70,7 @@ let n = 5;
 let currentQuestionIndex = 0;
 let score = 0;
 const randomQuestions = getRandomQuestions(queAnsPairs, n);
+const quizForm = document.getElementById("quizForm");
 
 function loadQuestions() {
   if (currentQuestionIndex >= randomQuestions.length) {
@@ -78,7 +79,6 @@ function loadQuestions() {
   }
   const item = randomQuestions[currentQuestionIndex];
   displayNumList();
-  const quizForm = document.getElementById("quizForm");
 
   const questionDiv = document.createElement("div");
   const btnDiv = document.createElement("div");
@@ -109,7 +109,6 @@ function loadQuestions() {
     btnDiv.innerHTML += `<button id="prev-btn">Prev</button>`;
     btnDiv.innerHTML += `<button id="nxt-btn">Submit</button>`;
   }
-  quizForm.innerHTML = "";
   quizForm.appendChild(questionDiv);
   quizForm.appendChild(btnDiv);
 
@@ -125,6 +124,7 @@ function loadQuestions() {
       }
       currentQuestionIndex++;
 
+      quizForm.innerHTML = "";
       if (currentQuestionIndex < randomQuestions.length) {
         loadQuestions();
       } else {
@@ -138,6 +138,7 @@ function loadQuestions() {
   if (currentQuestionIndex !== 0) {
     document.querySelector("#prev-btn").addEventListener("click", (event) => {
       event.preventDefault();
+      quizForm.innerHTML = "";
       if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
         loadQuestions();
@@ -185,29 +186,38 @@ function getRandomQuestions(queAnsPairs, n) {
 }
 
 function displayNumList() {
-  console.log("Hi");
   const listContainer =
     document.querySelector(".arrowContainer") || document.createElement("div");
   listContainer.classList.add("arrowContainer");
 
   if (!listContainer.parentElement) {
-    listContainer.innerHTML += `<div class="leftArrow">←</div>
+    listContainer.innerHTML = `<div class="leftArrow">←</div>
       <ul class="NumberList"></ul>
       <div class="rightArrow">→</div>`;
+  }
 
-    const quizForm = document.getElementById("quizForm");
+  if (quizForm) {
     quizForm.appendChild(listContainer);
+  } else {
+    console.error("QuizForm is not created");
   }
 
   const numList = listContainer.querySelector(".NumberList");
   numList.innerHTML = "";
 
   randomQuestions.forEach((_, index) => {
-    numList.innerHTML += `<li${
-      index === currentQuestionIndex ? ' class="active"' : ""
-    }>${index + 1}</li>`;
+    const listItem = document.createElement("li");
+    listItem.innerText = index + 1;
+    listItem.className = index === currentQuestionIndex ? "active" : "";
+
+    listItem.addEventListener("click", () => {
+      currentQuestionIndex = index;
+      quizForm.innerHTML = "";
+      loadQuestions();
+    });
+
+    numList.appendChild(listItem);
   });
-  console.log("hello");
 }
 
 loadQuestions();

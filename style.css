@@ -134,3 +134,30 @@ button:hover {
 .rightArrow {
   order: 3; /* Right arrow will be placed second */
 }
+
+.NumberList {
+  display: flex;
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px 20px;
+}
+.NumberList li {
+  margin: 0 10px;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  background-color: #f8f8f8;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.NumberList li.active {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+}
+
+.NumberList li:hover {
+  background-color: #ddd;
+}
