@@ -96,3 +96,41 @@ button:hover {
   font-size: 1.5rem;
   color: #4cae4c;
 }
+
+/* Styling the arrows */
+.arrowContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.leftArrow,
+.rightArrow {
+  font-size: 24px;
+  cursor: pointer;
+  user-select: none;
+  width: 50px; /* Fixed width */
+  height: 50px; /* Fixed height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  margin: 0 10px; /* Add margin between the arrows */
+}
+
+.leftArrow:hover,
+.rightArrow:hover {
+  background-color: #e0e0e0;
+}
+
+.leftArrow {
+  order: 0; /* Left arrow will be placed first */
+}
+
+.rightArrow {
+  order: 3; /* Right arrow will be placed second */
+}

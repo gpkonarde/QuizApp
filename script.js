@@ -77,7 +77,7 @@ function loadQuestions() {
     return;
   }
   const item = randomQuestions[currentQuestionIndex];
-
+  displayNumList();
   const quizForm = document.getElementById("quizForm");
 
   const questionDiv = document.createElement("div");
@@ -135,13 +135,15 @@ function loadQuestions() {
     }
   });
 
-  document.querySelector("#prev-btn").addEventListener("click", (event) => {
-    event.preventDefault();
-    if (currentQuestionIndex > 0) {
-      currentQuestionIndex--;
-      loadQuestions();
-    }
-  });
+  if (currentQuestionIndex !== 0) {
+    document.querySelector("#prev-btn").addEventListener("click", (event) => {
+      event.preventDefault();
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        loadQuestions();
+      }
+    });
+  }
 }
 
 function displayResult(score) {
@@ -180,6 +182,32 @@ function getRandomQuestions(queAnsPairs, n) {
   }
 
   return result;
+}
+
+function displayNumList() {
+  console.log("Hi");
+  const listContainer =
+    document.querySelector(".arrowContainer") || document.createElement("div");
+  listContainer.classList.add("arrowContainer");
+
+  if (!listContainer.parentElement) {
+    listContainer.innerHTML += `<div class="leftArrow">←</div>
+      <ul class="NumberList"></ul>
+      <div class="rightArrow">→</div>`;
+
+    const quizForm = document.getElementById("quizForm");
+    quizForm.appendChild(listContainer);
+  }
+
+  const numList = listContainer.querySelector(".NumberList");
+  numList.innerHTML = "";
+
+  randomQuestions.forEach((_, index) => {
+    numList.innerHTML += `<li${
+      index === currentQuestionIndex ? ' class="active"' : ""
+    }>${index + 1}</li>`;
+  });
+  console.log("hello");
 }
 
 loadQuestions();
