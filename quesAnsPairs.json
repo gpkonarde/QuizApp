@@ -1,0 +1,69 @@
+{
+  "queAnsPairs": [
+    {
+      "question": "Which class in Java is used to read data from a file?",
+      "options": ["FileReader", "BufferedWriter", "FileWriter", "Scanner"],
+      "answer": "FileReader"
+    },
+    {
+      "question": "Hashset is an implementation class of?",
+      "options": ["Set", "Map", "List", "Queue"],
+      "answer": "Set"
+    },
+    {
+      "question": "Number of primitive datatypes in Java?",
+      "options": ["8", "6", "10", "7"],
+      "answer": "8"
+    },
+    {
+      "question": "Can an interface in Java have a method with a body?",
+      "options": ["Yes", "No", "Only in abstract class", "Only in enums"],
+      "answer": "Yes"
+    },
+    {
+      "question": "What is the difference between == and equals() in Java?",
+      "options": [
+        "== compares references, equals() compares values",
+        "== compares values, equals() compares references",
+        "== compares data types, equals() compares sizes",
+        "== compares strings, equals() compares objects"
+      ],
+      "answer": "== compares references, equals() compares values"
+    },
+    {
+      "question": "Runtime exception is Checked or Unchecked exception?",
+      "options": ["Unchecked", "Checked", "Both", "Compile-time"],
+      "answer": "Unchecked"
+    },
+    {
+      "question": "The underlying structure of LinkedList is?",
+      "options": [
+        "Doubly Linked List",
+        "Array",
+        "Single Linked List",
+        "Hash Table"
+      ],
+      "answer": "Doubly Linked List"
+    },
+    {
+      "question": "What is the default size of an ArrayList in Java?",
+      "options": ["10", "0", "16", "5"],
+      "answer": "10"
+    },
+    {
+      "question": "Strings are _____ in nature",
+      "options": ["immutable", "mutable", "constant", "variable"],
+      "answer": "immutable"
+    },
+    {
+      "question": "What is the purpose of the final keyword in Java?",
+      "options": [
+        "To restrict modification or inheritance",
+        "To allow method overriding",
+        "To enable runtime polymorphism",
+        "To define abstract methods"
+      ],
+      "answer": "To restrict modification or inheritance"
+    }
+  ]
+}

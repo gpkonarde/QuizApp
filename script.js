@@ -94,21 +94,8 @@ function loadQuestions() {
         </div>
         `;
   });
-  // if (currentQuestionIndex === 0) {
-  //   btnDiv.innerHTML += `<button id="nxt-btn">Next</button>`;
-  // } else if (
-  //   currentQuestionIndex > 0 &&
-  //   currentQuestionIndex < randomQuestions.length - 1
-  // ) {
-  //   btnDiv.innerHTML += `<button id="prev-btn">Prev</button>`;
-  //   btnDiv.innerHTML += `<button id="nxt-btn">Next</button>`;
-  // } else
-  // if (currentQuestionIndex === randomQuestions.length - 1) {
-  //   // btnDiv.innerHTML += `<button id="prev-btn">Prev</button>`;
-  //   btnDiv.innerHTML += `<button id="nxt-btn">Submit</button>`;
-  // }
+
   quizForm.appendChild(questionDiv);
-  // quizForm.appendChild(btnDiv);
 
   buttonVisibility();
 
