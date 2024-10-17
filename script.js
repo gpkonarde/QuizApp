@@ -80,7 +80,7 @@ async function loadQuestions() {
       } else {
         displayResult(score);
       }
-    } else {
+    } else if (currentQuestionIndex != randomQuestions.length - 1) {
       alert("Please select an option");
     }
   });
@@ -111,12 +111,25 @@ function buttonVisibility() {
   } else {
     prevBtn.style.display = "flex";
   }
-
-  if (currentQuestionIndex === randomQuestions.length) {
+  console.log(currentQuestionIndex);
+  if (currentQuestionIndex == randomQuestions.length - 1) {
     nxtBtn.innerText = "✓";
     nxtBtn.onclick = (event) => {
       event.preventDefault();
-      displayResult(score);
+      const selectedOption = document.querySelector(
+        `input[name="q${currentQuestionIndex}"]:checked`
+      );
+      if (selectedOption) {
+        selectedAns[currentQuestionIndex] = selectedOption.value;
+        isCorrect[currentQuestionIndex] =
+          selectedOption.value === randomQuestions[currentQuestionIndex].answer;
+        if (isCorrect[currentQuestionIndex]) {
+          score++;
+        }
+        displayResult(score);
+      } else {
+        alert("Please select any option before submitting");
+      }
     };
   }
 }
